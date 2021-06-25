@@ -2,6 +2,16 @@ import React from 'react';
 
 
 class AdminRegister extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {};
+
+        this.emailRef = React.createRef();
+        this.passwordRef = React.createRef();
+        this.confirmPasswordRef = React.createRef();
+    }
+
     render() {
         return (
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -12,15 +22,15 @@ class AdminRegister extends React.Component {
                     <div className="row mb-3">
                         <div className="col-md-4">
                             <label for="email" className="form-label">Email address</label>
-                            <input type="email" className="form-control" id="email" aria-describedby="email" />
+                            <input type="email" className="form-control" ref={this.emailRef} id="email" aria-describedby="email" />
                         </div>
                         <div className="col-md-4">
                             <label for="password" className="form-label">Password</label>
-                            <input type="password" className="form-control" id="password" />
+                            <input type="password" className="form-control" ref={this.passwordRef} id="password" />
                         </div>
                         <div className="col-md-4">
                             <label for="confirm-password" className="form-label">Confirm Password</label>
-                            <input type="password" className="form-control" id="confirm-password" />
+                            <input type="password" className="form-control" ref={this.confirmPasswordRef} id="confirm-password" />
                         </div>
                     </div>
                     
