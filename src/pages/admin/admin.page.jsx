@@ -5,14 +5,15 @@ import {
     Route,
     Link
 } from 'react-router-dom';
-import Alerts from '../../pages/alerts/alerts.page';
-import Dashboard from '../../pages/dashboard/dashboard.page';
-import MenuItem from '../menuitem/menuitem.component';
+import MenuItem from '../../components/menuitem/menuitem.component';
+import Alerts from '../alerts/alerts.page';
+import Dashboard from '../dashboard/dashboard.page';
+import AdminRegister from '../adminregister/adminregister.page';
 
-import './container.style.css';
+import './admin.style.css';
 
 
-class Container extends React.Component {
+class Admin extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -40,7 +41,9 @@ class Container extends React.Component {
                                 <Link to="/alerts" onClick={this.handleClick}>
                                     <MenuItem name="Alerts" url="/alerts" icon="exclamation-circle" />
                                 </Link>
-                                    
+                                <Link to="/adminregister" onClick={this.handleClick}>
+                                    <MenuItem name="Admin Register" url="/adminregister" icon="user-shield" />
+                                </Link>
                             </ul>
 
                         </div>
@@ -53,6 +56,9 @@ class Container extends React.Component {
                             <Route exact path="/alerts">
                                 <Alerts />
                             </Route>
+                            <Route exact path="/adminregister">
+                                <AdminRegister />
+                            </Route>
 
                         </Switch>
 
@@ -63,4 +69,4 @@ class Container extends React.Component {
     }
 }
 
-export default Container;
+export default Admin;
