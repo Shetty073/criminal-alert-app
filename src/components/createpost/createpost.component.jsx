@@ -29,6 +29,10 @@ export default function CreatePost() {
         createAlert(
             categoryRef.current.value,
             titleRef.current.value,
+            nameRef.current.value,
+            skinToneRef.current.value,
+            eyeColorRef.current.value,
+            heightRef.current.value,
             detailsRef.current.value,
             image,
             currentUser.email

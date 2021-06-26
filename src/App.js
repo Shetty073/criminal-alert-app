@@ -17,8 +17,17 @@ import { useAuth } from './contexts/AuthContext';
 
 import './App.css';
 
-function App() {
+export default function App() {
 	const { currentUser } = useAuth();
+	
+	const activeRoute = (route) => {
+        if(window.location.pathname !== route) {
+			console.log(window.location.pathname);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 	return (
 		<div className = "App" >
@@ -26,7 +35,7 @@ function App() {
 			<div className="container-fluid">
 				<Router>
 					<div className="row">
-						{currentUser && <Nav />}
+						{currentUser && activeRoute('/') && <Nav />}
 
 						<Switch>
 							<Route exact path="/" component={Public} />
@@ -43,5 +52,3 @@ function App() {
 		</div>
 	);
 }
-
-export default App;
