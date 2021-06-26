@@ -1,4 +1,5 @@
 import React from 'react';
+import CreatePost from '../../components/createpost/createpost.component';
 
 import './dashboard.style.css';
 
@@ -9,7 +10,8 @@ function Dashboard() {
             <h5 className="mt-3">Dashboard</h5>
             <hr />
 
-            
+            <CreatePost />
+            <br />
 
         </main>
     );

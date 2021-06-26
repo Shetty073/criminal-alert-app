@@ -1,5 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
+import 'firebase/storage';
 
 // ! 🚨 NOTE 🚨: Right now we are registering new admin users via 
 // ! createUserWithEmailAndPassword() method. This method automatically
@@ -20,5 +22,12 @@ const app = firebase.initializeApp({
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 });
 
+firebase.firestore().settings({
+    timestampsInSnapshots: true,
+    merge: true,
+});
+
 export const auth = app.auth();
+export const firestore = firebase.firestore();
+export const storage = firebase.storage();
 export default app;
