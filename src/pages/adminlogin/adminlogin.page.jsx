@@ -1,7 +1,7 @@
 import React, { createRef, useState } from 'react';
 
 import { useAuth } from '../../contexts/AuthContext';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 
 export default function AdminLogin() {
     const emailRef = createRef();
@@ -17,10 +17,11 @@ export default function AdminLogin() {
     async function handleSubmit(e) {
         e.preventDefault();
 
+        setError('');
+        
         try {
-            setError('');
-            setLoading(true);
             await login(emailRef.current.value, passwordRef.current.value);
+            setLoading(true);
             history.push('/dashboard');
         } catch (error) {
             setError('Failed to log in');

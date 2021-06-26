@@ -12,19 +12,23 @@ function AdminRegister() {
     const { register } = useAuth();
 
     const [error, setError] = useState();
+    const [success, setSuccess] = useState();
     const [loading, setLoading] = useState(false);
 
     async function handleSubmit(e) {
         e.preventDefault();
+        
+        setSuccess('');
+        setError('');
 
         if(passwordRef.current.value !== confirmPasswordRef.current.value) {
             return setError('Passwords do not match');
         }
 
         try {
-            setError('');
             setLoading(true);
             await register(emailRef.current.value, passwordRef.current.value);
+            setSuccess('Successfully registered the user');
         } catch (error) {
             setError('Failed to register the user');
         }
@@ -56,6 +60,7 @@ function AdminRegister() {
                     </div>
                 </div>
                 {error && <div className="alert alert-danger">{error}</div>}
+                {success && <div className="alert alert-success">{success}</div>}
                 <button disabled={loading} type="submit" className="btn btn-primary">Register</button>
             </form>
 
