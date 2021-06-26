@@ -22,7 +22,6 @@ export default function App() {
 	
 	const activeRoute = (route) => {
         if(window.location.pathname !== route) {
-			console.log(window.location.pathname);
             return true;
         } else {
             return false;
