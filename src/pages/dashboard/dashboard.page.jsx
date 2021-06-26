@@ -3,18 +3,16 @@ import React from 'react';
 import './dashboard.style.css';
 
 
-class Dashboard extends React.Component {
-    render() {
-        return (
-            <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <h5 className="mt-3">Dashboard</h5>
-                <hr />
+function Dashboard() {
+    return (
+        <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <h5 className="mt-3">Dashboard</h5>
+            <hr />
 
-                
+            
 
-            </main>
-        );
-    }
+        </main>
+    );
 }
 
 export default Dashboard;

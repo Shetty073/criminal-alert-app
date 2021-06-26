@@ -1,27 +1,47 @@
 import React from 'react';
+import { 
+	BrowserRouter as Router, 
+	Switch,
+	Route
+} from 'react-router-dom';
 import Header from './components/header/header.component';
-import Admin from './pages/admin/admin.page';
+import ProtectedRoute from './components/protectedroute/protectedroute.component';
+import Nav from './components/nav/nav.component';
+import Alerts from './pages/alerts/alerts.page';
+import Dashboard from './pages/dashboard/dashboard.page';
+import AdminRegister from './pages/adminregister/adminregister.page';
 import Public from './pages/public/public.page';
+import AdminLogin from './pages/adminlogin/adminlogin.page';
+import UnknownRoute from './pages/unknownroute/unknownroute.page';
+import { useAuth } from './contexts/AuthContext';
 
 import './App.css';
 
-class App extends React.Component {
-	constructor(props) {
-		super(props);
+function App() {
+	const { currentUser } = useAuth();
 
-		this.state = {
-			isAdmin: true,
-		};
-	}
+	return (
+		<div className = "App" >
+			<Header />
+			<div className="container-fluid">
+				<Router>
+					<div className="row">
+						{currentUser && <Nav />}
 
-	render() {
-		return (
-			<div className = "App" >
-				<Header />
-				{this.state.isAdmin ? < Admin /> : <Public />} 
+						<Switch>
+							<Route exact path="/" component={Public} />
+							{!currentUser && <Route path="/login" component={AdminLogin} />}
+							<ProtectedRoute path="/dashboard" component={Dashboard} />
+							<ProtectedRoute path="/alerts" component={Alerts} />
+							<ProtectedRoute path="/adminregister" component={AdminRegister} />
+
+							<Route path="*" component={UnknownRoute} />
+						</Switch>
+					</div>
+				</Router>
 			</div>
-		);
-	}
+		</div>
+	);
 }
 
 export default App;

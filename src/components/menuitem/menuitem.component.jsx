@@ -1,22 +1,26 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom'
 
 import './menuitem.style.css';
 
 
-class MenuItem extends React.Component {
+export default function MenuItem({ url, icon, name }) {
+    const location = useLocation();
 
-    render() {
-        const activeClass = (route) => { return window.location.pathname === route ? "nav-link active" : "nav-link" }
-
-        return (
-            <li className="nav-item">
-                <span className={activeClass(this.props.url)} aria-current="page" href="#">
-                    <i className={`fas fa-${this.props.icon}`}></i>
-                    <span className="nav-item-name">{this.props.name}</span>
-                </span>
-            </li>
-        );
+    const activeClass = (route) => {
+        if(location.pathname === route) {
+            return "nav-link active";
+        } else {
+            return "nav-link";
+        }
     }
-}
 
-export default MenuItem;
+    return (
+        <li className="nav-item">
+            <span className={activeClass(url)} aria-current="page" href="#">
+                <i className={`fas fa-${icon}`}></i>
+                <span className="nav-item-name">{name}</span>
+            </span>
+        </li>
+    );
+}
