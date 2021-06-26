@@ -12,12 +12,13 @@ export default function CreatePost() {
 
     const categoryRef = createRef();
     const titleRef = createRef();
-    const detailsRef = createRef();
-    const imgRef = createRef();
     const nameRef = createRef();
     const skinToneRef = createRef();
     const eyeColorRef = createRef();
     const heightRef = createRef();
+    const ageRef = createRef();
+    const imgRef = createRef();
+    const detailsRef = createRef();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -33,6 +34,7 @@ export default function CreatePost() {
             skinToneRef.current.value,
             eyeColorRef.current.value,
             heightRef.current.value,
+            ageRef.current.value,
             detailsRef.current.value,
             image,
             currentUser.email
@@ -97,6 +99,20 @@ export default function CreatePost() {
                         </div>
                         <div className="col-md-6">
                             <div className="mb-3">
+                                <label htmlFor="age" className="form-label">Age</label>
+                                <input type="number" className="form-control" id="age" ref={ageRef} />
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <div className="mb-3">
+                                <label htmlFor="height" className="form-label">Height</label>
+                                <input type="text" className="form-control" id="height" ref={heightRef} />
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <div className="mb-3">
                                 <label htmlFor="skintone" className="form-label">Skin Tone</label>
                                 <input type="text" className="form-control" id="skintone" ref={skinToneRef} />
                             </div>
@@ -111,8 +127,9 @@ export default function CreatePost() {
                         </div>
                         <div className="col-md-6">
                             <div className="mb-3">
-                                <label htmlFor="height" className="form-label">Height</label>
-                                <input type="text" className="form-control" id="height" ref={heightRef} />
+                                <label htmlFor="img" className="form-label">Photo</label>
+                                <input onChange={handleImageChange} className="form-control form-control-sm" accept=".jpg, .jpeg, .png"
+                                id="img" ref={imgRef} type="file" />
                             </div>
                         </div>
                     </div>
@@ -120,11 +137,7 @@ export default function CreatePost() {
                         <label htmlFor="details" className="form-label">Details</label>
                         <textarea className="form-control" id="details" ref={detailsRef} rows="3"></textarea>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="img" className="form-label">Image Upload</label>
-                        <input onChange={handleImageChange} className="form-control form-control-sm" accept=".jpg, .jpeg, .png"
-                        id="img" ref={imgRef} type="file" />
-                    </div>
+                    
                     {error && <div className="alert alert-danger">{error}</div>}
                     {success && <div className="alert alert-success">{success}</div>}
                     <button disabled={loading} type="submit" className="btn btn-primary">Create</button>

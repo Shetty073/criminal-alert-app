@@ -1,6 +1,6 @@
 import { firestore, storage } from "./firebase";
 
-export async function createAlert(category, title, name, skintone, eyecolor, height, details, image, uploadedby) {
+export async function createAlert(category, title, name, skintone, eyecolor, height, age, details, image, uploadedby) {
     const alertsDb = firestore.collection('alerts');
     let imageUrl = '';
 
