@@ -1,12 +1,12 @@
 import { firestore, storage } from "./firebase";
 
-export async function createAlert(category, title, name, skintone, eyecolor, height, age, details, image, uploadedby) {
+export async function createAlert(category, title, name, skintone, eyecolor, height, age, lastlocation, details, image, uploadedbyid, uploadedbyemail) {
     const alertsDb = firestore.collection('alerts');
     let imageUrl = '';
 
     if (image) {
         const storageRef = storage.ref();
-        const imageRef = storageRef.child(`images/${image.name}`);
+        const imageRef = storageRef.child(`images/${new Date().getTime()}${image.name}`);
         try {
             let snapshot = await imageRef.put(image);
             imageUrl = await snapshot.ref.getDownloadURL();
@@ -23,17 +23,21 @@ export async function createAlert(category, title, name, skintone, eyecolor, hei
             category: category,
             title: title,
             name: name,
+            age: age,
             skintone: skintone,
             eyecolor: eyecolor,
             height: height,
-            details: details,
             image: imageUrl,
-            uploadedby: uploadedby
+            lastlocation: lastlocation,
+            details: details,
+            uploadedbyid: uploadedbyid,
+            uploadedbyemail: uploadedbyemail,
+            uploadedon: new Date()
         });
 
         return true;
     } catch (error) {
-        return false
+        return false;
     }
 
 }

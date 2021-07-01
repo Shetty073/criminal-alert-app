@@ -31,17 +31,17 @@ function Header() {
                 <div className="row">
                     <div className="col-md-3"></div>
                     <div className="col-md-4"></div>
-                    <div className="col-md-3 col-lg-4"></div>
-                    <div className="col-md-2 col-lg-1">
-                        <span className="ms-3 text-white">
-                            {currentUser && currentUser.email.substring(0, currentUser.email.indexOf('@'))}
-                        </span>
-                    </div>
+                    <div className="col-md-5"></div>
                 </div>
             </span>
-            <div className="navbar-nav">
+            <div className="d-flex flex-row-reverse">
                 <div className="nav-item text-nowrap">
                     {currentUser && <a onClick={handleLogout} className="nav-link px-3 text-danger" href="/#">Log Out</a>}
+                </div>
+                <div className="nav-item text-nowrap">
+                    {currentUser && <a className="nav-link px-3 text-white" href="/dashboard">
+                        {currentUser.email.substring(0, currentUser.email.indexOf('@'))} 
+                    </a>}
                 </div>
             </div>
         </header>

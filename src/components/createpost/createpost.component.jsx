@@ -18,6 +18,7 @@ export default function CreatePost() {
     const heightRef = createRef();
     const ageRef = createRef();
     const imgRef = createRef();
+    const lastLocationRef = createRef();
     const detailsRef = createRef();
 
     function handleSubmit(e) {
@@ -35,12 +36,15 @@ export default function CreatePost() {
             eyeColorRef.current.value,
             heightRef.current.value,
             ageRef.current.value,
+            lastLocationRef.current.value,
             detailsRef.current.value,
             image,
-            currentUser.email
+            currentUser.uid,
+            currentUser.email,
         ).then((success) => {
             if(success) {
                 setSuccess('Alert created successfully!');
+                e.target.reset();
             } else {
                 setError('Failed to create the alert');
             }
@@ -56,16 +60,16 @@ export default function CreatePost() {
         let file = e.target.files[0];
 
         if (file) {
-          reader.onload = () => {
-            if (reader.readyState === 2) {
-              setImage(file);
-            }
-          };
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setImage(file);
+                }
+            };
           reader.readAsDataURL(e.target.files[0]);
         } else {
-          setImage(null);
+            setImage(null);
         }
-      };
+    };
 
     return (
         <div className="card">
@@ -77,7 +81,7 @@ export default function CreatePost() {
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="category" className="form-label">Category</label>
-                                <select className="form-select" defaultValue="1" aria-label="Default select example" ref={categoryRef} id="category">
+                                <select className="form-select" defaultValue="1" aria-label="Default select example" ref={categoryRef} id="category" required>
                                     <option value="Wanted Criminal">Wanted Criminal</option>
                                     <option value="Child Abduction">Child Abduction</option>
                                 </select>
@@ -86,7 +90,7 @@ export default function CreatePost() {
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="title" className="form-label">Title</label>
-                                <input type="text" className="form-control" id="title" ref={titleRef} />
+                                <input type="text" className="form-control" id="title" ref={titleRef} required/>
                             </div>
                         </div>
                     </div>
@@ -94,13 +98,13 @@ export default function CreatePost() {
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="name" className="form-label">Name</label>
-                                <input type="text" className="form-control" id="name" ref={nameRef} />
+                                <input type="text" className="form-control" id="name" ref={nameRef} required/>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="age" className="form-label">Age</label>
-                                <input type="number" className="form-control" id="age" ref={ageRef} />
+                                <input type="number" className="form-control" id="age" ref={ageRef} required/>
                             </div>
                         </div>
                     </div>
@@ -108,13 +112,13 @@ export default function CreatePost() {
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="height" className="form-label">Height</label>
-                                <input type="text" className="form-control" id="height" ref={heightRef} />
+                                <input type="text" className="form-control" id="height" ref={heightRef} required/>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="skintone" className="form-label">Skin Tone</label>
-                                <input type="text" className="form-control" id="skintone" ref={skinToneRef} />
+                                <input type="text" className="form-control" id="skintone" ref={skinToneRef} required/>
                             </div>
                         </div>
                     </div>
@@ -122,21 +126,32 @@ export default function CreatePost() {
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="eyecolor" className="form-label">Eye Color</label>
-                                <input type="text" className="form-control" id="eyecolor" ref={eyeColorRef} />
+                                <input type="text" className="form-control" id="eyecolor" ref={eyeColorRef} required/>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="img" className="form-label">Photo</label>
                                 <input onChange={handleImageChange} className="form-control form-control-sm" accept=".jpg, .jpeg, .png"
-                                id="img" ref={imgRef} type="file" />
+                                id="img" ref={imgRef} type="file" required />
                             </div>
                         </div>
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="details" className="form-label">Details</label>
-                        <textarea className="form-control" id="details" ref={detailsRef} rows="3"></textarea>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <div className="mb-3">
+                                <label htmlFor="lastlocation" className="form-label">Last Known Location</label>
+                                <input type="text" className="form-control" id="lastlocation" ref={lastLocationRef} required />
+                            </div>
+                        </div>
+                        <div className="col-md-6">
+                            <div className="mb-3">
+                                <label htmlFor="details" className="form-label">More Details</label>
+                                <textarea className="form-control" id="details" ref={detailsRef} rows="3"></textarea>
+                            </div>
+                        </div>
                     </div>
+                    
                     
                     {error && <div className="alert alert-danger">{error}</div>}
                     {success && <div className="alert alert-success">{success}</div>}
