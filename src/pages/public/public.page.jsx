@@ -29,7 +29,7 @@ function Public() {
     }, []);
 
     const alerts = alertslist.map((alert, index) => {
-        return (<Alert key={index} alert={alert} />);
+        return (<Alert key={index} alert={alert} widthclass={'col-md-6'} />);
     });
 
     return (

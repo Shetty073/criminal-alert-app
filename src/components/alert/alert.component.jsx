@@ -2,20 +2,21 @@ import React from 'react'
 
 import './alert.style.css';
 
-export default function Alert({ alert }) {
+export default function Alert({ alert, widthclass }) {
+    const handleEdit = () => {
+        window.alert('This functionality is not yet implemented.');
+    };
+
+    const handleDelete = () => {
+        window.alert('This functionality is not yet implemented.');
+    };
 
     return (
         <div className="row mb-5">
-            <div className="col-md-6 mx-md-auto">
+            <div className={`${widthclass} mx-md-auto`}>
                 <div className="card">
                     <div className="row">
-                        <div className="col-md-6">
-                            <a href={alert.image}>
-                                <img className="img-fluid ms-2 my-2" src={alert.image} alt="person" />
-                            </a>
-
-                        </div>
-                        <div className="col-md-6">
+                        <div className="col-md-9">
                             <div className="card-body">
                                 <h5 className="card-title">{alert.category}</h5>
                                 <h6>{alert.title}</h6>
@@ -54,6 +55,25 @@ export default function Alert({ alert }) {
                             </div>
 
                         </div>
+                        <div className="col-md-3 text-center">
+                            <div>
+                                <a href={alert.image}>
+                                    <img width="300" height="400" className="img-fluid px-md-2 my-2" src={alert.image} alt="person" />
+                                </a>
+                            </div>
+                            {widthclass ? <></> : 
+                            <div className="mb-2">
+                                <button onClick={handleEdit} className="btn btn-warning me-1">
+                                    <i className="fas fa-edit"></i>
+                                </button>
+
+                                <button onClick={handleDelete} className="btn btn-danger">
+                                    <i className="fas fa-trash-alt"></i>
+                                </button>
+                            </div>}
+                            
+                        </div>
+
                     </div>
                 </div>
             </div>
