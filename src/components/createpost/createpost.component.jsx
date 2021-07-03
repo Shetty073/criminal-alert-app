@@ -50,7 +50,7 @@ export default function CreatePost() {
             }
             setLoading(false);
         }).catch((error) => {
-            console.error(error);
+            console.error(error.message);
             setLoading(false);
         });
     }

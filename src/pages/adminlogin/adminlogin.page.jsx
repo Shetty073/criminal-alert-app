@@ -24,6 +24,7 @@ export default function AdminLogin() {
             await login(emailRef.current.value, passwordRef.current.value);
             history.push('/dashboard');
         } catch (error) {
+            console.error(error.message);
             setError('Failed to log in');
         }
         setLoading(false);

@@ -30,6 +30,7 @@ function AdminRegister() {
             await register(emailRef.current.value, passwordRef.current.value);
             setSuccess('Successfully registered the user');
         } catch (error) {
+            console.error(error.message);
             setError('Failed to register the user');
         }
         setLoading(false);

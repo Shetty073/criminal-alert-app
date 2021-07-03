@@ -28,9 +28,7 @@ function Public() {
         return unsubscribe;
     }, []);
 
-    const alerts = alertslist.map((alert, index) => {
-        return (<Alert key={index} alert={alert} widthclass={'col-md-6'} />);
-    });
+    const alerts = alertslist.map((alert, index) => (<Alert key={index} alert={alert} widthclass={'col-md-6'} />));
 
     return (
         <div className="mt-3">

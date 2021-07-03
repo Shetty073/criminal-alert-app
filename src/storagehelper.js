@@ -11,7 +11,7 @@ export async function createAlert(category, title, name, skintone, eyecolor, hei
             let snapshot = await imageRef.put(image);
             imageUrl = await snapshot.ref.getDownloadURL();
         } catch (error) {
-            console.error(error);
+            console.error(error.message);
             return false;
         }
     } else {
@@ -37,6 +37,7 @@ export async function createAlert(category, title, name, skintone, eyecolor, hei
 
         return true;
     } catch (error) {
+        console.error(error.message);
         return false;
     }
 
