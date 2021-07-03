@@ -61,13 +61,13 @@ export default function Alert({ alert, widthclass }) {
                                     <img width="300" height="400" className="img-fluid px-md-2 my-2" src={alert.image} alt="person" />
                                 </a>
                             </div>
-                            {widthclass ? <></> : 
+                            {!widthclass &&
                             <div className="mb-2">
                                 <button onClick={handleEdit} className="btn btn-warning me-1">
                                     <i className="fas fa-edit"></i>
                                 </button>
 
-                                <button onClick={handleDelete} className="btn btn-danger">
+                                <button onClick={handleDelete} className="btn btn-danger ms-1">
                                     <i className="fas fa-trash-alt"></i>
                                 </button>
                             </div>}
