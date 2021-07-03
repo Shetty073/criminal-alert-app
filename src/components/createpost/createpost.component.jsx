@@ -104,7 +104,7 @@ export default function CreatePost() {
                         <div className="col-md-6">
                             <div className="mb-3">
                                 <label htmlFor="age" className="form-label">Age</label>
-                                <input type="number" className="form-control" id="age" ref={ageRef} required/>
+                                <input type="number" className="form-control" id="age" ref={ageRef} step="0.1" required/>
                             </div>
                         </div>
                     </div>
