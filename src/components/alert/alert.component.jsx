@@ -1,15 +1,7 @@
 import React from 'react'
-
 import './alert.style.css';
 
-export default function Alert({ alert, widthclass }) {
-    const handleEdit = () => {
-        window.alert('This functionality is not yet implemented.');
-    };
-
-    const handleDelete = () => {
-        window.alert('This functionality is not yet implemented.');
-    };
+export default function Alert({ index, alert, widthclass, handleEdit, handleDelete }) {
 
     return (
         <div className="row mb-5">
@@ -63,11 +55,11 @@ export default function Alert({ alert, widthclass }) {
                             </div>
                             {!widthclass &&
                             <div className="mb-2">
-                                <button onClick={handleEdit} className="btn btn-warning me-1">
+                                <button onClick={handleEdit} data-index={index} className="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#editModal">
                                     <i className="fas fa-edit"></i>
                                 </button>
 
-                                <button onClick={handleDelete} className="btn btn-danger ms-1">
+                                <button onClick={handleDelete} data-index={index} className="btn btn-danger ms-1" data-bs-toggle="modal" data-bs-target="#deleteModal">
                                     <i className="fas fa-trash-alt"></i>
                                 </button>
                             </div>}

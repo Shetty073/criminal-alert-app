@@ -32,6 +32,7 @@ export function AuthProvider({ children }) {
 			setLoading(false);
 		});
 
+		// cleanup
 		return unsubscribe;
 	}, []);
 

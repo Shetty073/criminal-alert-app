@@ -21,7 +21,7 @@ export default function CreatePost() {
     const lastLocationRef = createRef();
     const detailsRef = createRef();
 
-    function handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         setSuccess(null);
@@ -55,7 +55,7 @@ export default function CreatePost() {
         });
     }
 
-    function handleImageChange(e) {
+    const handleImageChange = (e) => {
         const reader = new FileReader();
         let file = e.target.files[0];
 

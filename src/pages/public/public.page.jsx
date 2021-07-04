@@ -25,6 +25,7 @@ function Public() {
             }
         });
 
+        // Stop listening for updates when no longer required
         return unsubscribe;
     }, []);
 
